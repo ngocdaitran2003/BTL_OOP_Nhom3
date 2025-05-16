@@ -4,12 +4,25 @@
  */
 package JFrame;
 
+import Connector.KetNoiSQL;
+
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import DAO.TaiKhoanDAO;
+import DAO.NhanVienDAO;
+import model.ThongTinNhanVien;
+import JFrame.Main_NV;
+import JFrame.Main_SV;
+import JFrame.Main_admin;
+import JFrame.DangKyTaiKhoan;
 /**
  *
  * @author MPhuc
  */
 public class Login1 extends javax.swing.JFrame {
-
+    String email;
     /**
      * Creates new form Login
      */
@@ -98,6 +111,11 @@ public class Login1 extends javax.swing.JFrame {
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Click here to create a new account!");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Forgot your password ?");
@@ -211,9 +229,77 @@ public class Login1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your han dling code here:
+        String un = jTextField1.getText().trim();
+        String ps = jPasswordField1.getText().trim();
+
+        if (un.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập!");
+        } else if (ps.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu!");
+        } else {
+            try {
+                Connection conn = KetNoiSQL.getConnection();
+
+                Statement stm = conn.createStatement();
+
+                String sql = "select * from TaiKhoan where tenDangNhap='" + un + "' and matKhau='" + ps + "'";
+                ResultSet rs = stm.executeQuery(sql);
+
+                if (rs.next()) {
+                    if (rs.getString("phanQuyen").equals("Quản lý")) {
+                        this.email = new TaiKhoanDAO().LayEmail(un);
+                        ThongTinNhanVien nv = new NhanVienDAO().getAllThongTinNVTheoEmail(email);
+                        if (nv.getTrangThai().equals("Đã nghỉ việc")) {
+                            JOptionPane.showMessageDialog(null, "Bạn đã nghĩ việc ! Không thể đăng nhập đc!");
+                        } else {
+                            dispose();
+                            Main_admin main = new Main_admin();
+                            main.setVisible(true);
+                            this.email = new TaiKhoanDAO().LayEmail(un);
+                            main.setnameuser(email);
+                        }
+                    } else if (rs.getString("phanQuyen").equals("Sinh Viên")) {
+                        dispose();
+                        Main_SV main = new Main_SV();
+                        main.setVisible(true);
+                        this.email = new TaiKhoanDAO().LayEmail(un);
+                        main.setEmail(email);
+
+                        //   main.setnameuser(un);
+                    } else if (rs.getString("phanQuyen").equals("Nhân viên")) {
+                        this.email = new TaiKhoanDAO().LayEmail(un);
+                        ThongTinNhanVien nv = new NhanVienDAO().getAllThongTinNVTheoEmail(email);
+                        if (nv.getTrangThai().equals("Đã nghỉ việc")) {
+                            JOptionPane.showMessageDialog(null, "Bạn đã nghĩ việc ! Không thể đăng nhập đc!");
+                        } else {
+                            dispose();
+                            Main_NV main = new Main_NV();
+                            main.setVisible(true);
+                            main.setnameuser(email);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không đúng!");
+                    jTextField1.setText("");
+                    jPasswordField1.setText("");
+                }
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        DangKyTaiKhoan register = new DangKyTaiKhoan();
+        register.show();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+  
     /**
      * @param args the command line arguments
      */

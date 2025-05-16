@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JFameQuanLyKyTucXa;
+package JFrame;
 
 import java.util.Date;
 public class DangKyTaiKhoan extends javax.swing.JFrame {
