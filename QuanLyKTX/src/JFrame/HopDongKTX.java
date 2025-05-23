@@ -4,12 +4,23 @@
  */
 package JFrame;
 
+import DAO.SinhVienDAO;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.ThongTinHopDong;
+
+
 /**
  *
  * @author MPhuc
  */
 public class HopDongKTX extends javax.swing.JPanel {
-
+    private int countjComboBox1;
+    private List<ThongTinHopDong> listhd;
+    private int count;
+    private int count1;
+    private DefaultTableModel Model;
     /**
      * Creates new form HopDongKTX
      */
@@ -37,6 +48,7 @@ public class HopDongKTX extends javax.swing.JPanel {
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         AddHopDong = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -91,7 +103,7 @@ public class HopDongKTX extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(300, 300, 300))
+                .addGap(319, 319, 319))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +128,7 @@ public class HopDongKTX extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Còn hạn", "Hết hạn" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -131,6 +143,11 @@ public class HopDongKTX extends javax.swing.JPanel {
 
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
+        jLabel47.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel47MouseClicked(evt);
+            }
+        });
 
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/edit.png"))); // NOI18N
@@ -144,25 +161,25 @@ public class HopDongKTX extends javax.swing.JPanel {
             QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QuanLyHopDongLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QuanLyHopDongLayout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(357, 357, 357))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QuanLyHopDongLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QuanLyHopDongLayout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addGroup(QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(QuanLyHopDongLayout.createSequentialGroup()
                         .addComponent(jLabel35)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel46)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel47)
-                        .addGap(18, 18, 18)
                         .addComponent(jLabel48)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addGap(13, 13, 13))))
+                        .addComponent(jLabel7))
+                    .addGroup(QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(QuanLyHopDongLayout.createSequentialGroup()
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel47))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46))
         );
         QuanLyHopDongLayout.setVerticalGroup(
             QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,14 +188,17 @@ public class HopDongKTX extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(QuanLyHopDongLayout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel47))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel46, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel47, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(QuanLyHopDongLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -341,10 +361,7 @@ public class HopDongKTX extends javax.swing.JPanel {
             AddHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(AddHopDongLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         AddHopDongLayout.setVerticalGroup(
             AddHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -529,6 +546,18 @@ public class HopDongKTX extends javax.swing.JPanel {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        countjComboBox1 = jComboBox1.getSelectedIndex();
+        //  System.out.println("select ="+countjComboBox1);
+        if (countjComboBox1 == 0) {
+            showTable();
+
+        } else if (countjComboBox1 == 1) {
+            showTable1();
+        } else if (countjComboBox1 == 2) {
+            showTable2();
+        }
+
+        jTextField1.setText("");
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -543,7 +572,40 @@ public class HopDongKTX extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField11ActionPerformed
 
+    private void jLabel47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseClicked
+        // TODO add your handling code here:
+        Model.setRowCount(0);
+        String textsearch = jTextField1.getText().trim();
+        if(!textsearch.equals("")) {
+            if (countjComboBox1 == 0) {
+            
+                showTablemasv("maSV", textsearch, 0);
 
+            } else if (countjComboBox1 == 1) {
+            
+                showTablemasv("maSV", textsearch, 1);
+ 
+            } else if (countjComboBox1 == 2) {
+                
+                showTablemasv("maSV", textsearch, 2);
+                
+            }
+        }
+    }//GEN-LAST:event_jLabel47MouseClicked
+
+    public static void main(String[] args) {
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+            javax.swing.JFrame frame = new javax.swing.JFrame("Cài đặt mật khẩu");
+            frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(new HopDongKTX());
+            frame.pack();
+            frame.setLocationRelativeTo(null); // Center the window
+            frame.setVisible(true);
+        }
+    });
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddHopDong;
     private javax.swing.JPanel QuanLyHopDong;
@@ -581,6 +643,7 @@ public class HopDongKTX extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -590,4 +653,90 @@ public class HopDongKTX extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+    public void showTable() {
+        listhd = new DAO.HopDongKTXDAO().getallHopDong();
+        Model.setRowCount(0);
+        String trangthai = null;
+        String tinhtrang = "";
+        Date date = new Date();
+        for (ThongTinHopDong hd : listhd) {
+
+            if (date.compareTo(hd.getNgayHDKT()) < 0) {
+                tinhtrang = "Còn hạn";
+            } else {
+                tinhtrang = "Hết hạn";
+            }
+            String gioitinh = new SinhVienDAO().layGioiTinhSVtuMaSV(hd.getMasv());
+            String tensv = new SinhVienDAO().laytenSVtuMaSV(hd.getMasv());
+            Model.addRow(new Object[]{
+                hd.getMasv(), tensv, hd.getMaphong(), gioitinh, hd.getNgayHDBD(), hd.getNgayHDKT(), tinhtrang
+            });
+        }
+        count = -1;
+    }
+    
+    private void showTable1() {
+        listhd = new DAO.HopDongKTXDAO().getallHopDong1();
+        Model.setRowCount(0);
+        String trangthai = null;
+        Date date = new Date();
+        String tinhtrang = "";
+        for (ThongTinHopDong hd : listhd) {
+
+            if (date.compareTo(hd.getNgayHDKT()) < 0) {
+                tinhtrang = "Còn hạn";
+            } else {
+                tinhtrang = "Hết hạn";
+            }
+            String gioitinh = new SinhVienDAO().layGioiTinhSVtuMaSV(hd.getMasv());
+            String tensv = new SinhVienDAO().laytenSVtuMaSV(hd.getMasv());
+            Model.addRow(new Object[]{
+                hd.getMasv(), tensv, hd.getMaphong(), gioitinh, hd.getNgayHDBD(), hd.getNgayHDKT(), tinhtrang
+            });
+        }
+        count = -1;
+    }
+
+    private void showTable2() {
+        listhd = new DAO.HopDongKTXDAO().getallHopDong2();
+        Model.setRowCount(0);
+        String trangthai = null;
+        Date date = new Date();
+        String tinhtrang = "";
+        for (ThongTinHopDong hd : listhd) {
+
+            if (date.compareTo(hd.getNgayHDKT()) < 0) {
+                tinhtrang = "Còn hạn";
+            } else {
+                tinhtrang = "Hết hạn";
+            }
+            String gioitinh = new SinhVienDAO().layGioiTinhSVtuMaSV(hd.getMasv());
+            String tensv = new SinhVienDAO().laytenSVtuMaSV(hd.getMasv());
+            Model.addRow(new Object[]{
+                hd.getMasv(), tensv, hd.getMaphong(), gioitinh, hd.getNgayHDBD(), hd.getNgayHDKT(), tinhtrang
+            });
+        }
+        count = -1;
+    }
+    
+     private void showTablemasv(String where, String text, int k) {
+        listhd = new DAO.HopDongKTXDAO().getallHopDongmasv(where, text, k);
+        Model.setRowCount(0);
+        String trangthai = null;
+        String tinhtrang = "";
+        Date date = new Date();
+        for (ThongTinHopDong hd : listhd) {
+            if (date.compareTo(hd.getNgayHDKT()) < 0) {
+                tinhtrang = "Còn hạn";
+            } else {
+                tinhtrang = "Hết hạn";
+            }
+            String gioitinh = new SinhVienDAO().layGioiTinhSVtuMaSV(hd.getMasv());
+            String tensv = new SinhVienDAO().laytenSVtuMaSV(hd.getMasv());
+            Model.addRow(new Object[]{
+                hd.getMasv(), tensv, hd.getMaphong(), gioitinh, hd.getNgayHDBD(), hd.getNgayHDKT(), tinhtrang
+            });
+        }
+        count = -1;
+    }
 }

@@ -4,17 +4,29 @@
  */
 package JFrame;
 
+import Connector.KetNoiSQL;
+import DAO.TaiKhoanDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MPhuc
  */
 public class CaiDatMK extends javax.swing.JPanel {
-
+    private boolean test = false;
+    private String email;
     /**
      * Creates new form CaiDatMK
      */
     public CaiDatMK() {
         initComponents();
+        jLabel10.setVisible(false);
     }
 
     /**
@@ -36,6 +48,7 @@ public class CaiDatMK extends javax.swing.JPanel {
         jTextField2 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -72,6 +85,19 @@ public class CaiDatMK extends javax.swing.JPanel {
         jPasswordField1.setText("jPasswordField1");
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png"))); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png"))); // NOI18N
+        jLabel13.setText("jLabel13");
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,28 +119,33 @@ public class CaiDatMK extends javax.swing.JPanel {
                             .addComponent(jTextField1)
                             .addComponent(jTextField2)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -163,7 +194,7 @@ public class CaiDatMK extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +213,7 @@ public class CaiDatMK extends javax.swing.JPanel {
                             .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel9)
                                 .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -193,6 +224,11 @@ public class CaiDatMK extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 0, 0));
         jButton1.setText("Đặt lại tài khoản ");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -201,11 +237,11 @@ public class CaiDatMK extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(359, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -229,13 +265,80 @@ public class CaiDatMK extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        jLabel10.setVisible(false);
+        jLabel13.setVisible(true);
+        jPasswordField1.setEchoChar('*');
+    }//GEN-LAST:event_jLabel10MouseClicked
 
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+        jLabel10.setVisible(true);
+        jLabel13.setVisible(false);
+        jPasswordField1.setEchoChar((char)0);
+    }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        String email = jTextField1.getText().trim();
+        String tendangnhap = jTextField2.getText().trim();
+        String matkhau = jPasswordField1.getText().trim();
+        String uptendangnhap = jTextField3.getText().trim();
+        String upmatkhau = jPasswordField3.getText().trim();
+        String upnhaplaimatkhau = jPasswordField2.getText().trim();
+
+        boolean kiemtratendn = new TaiKhoanDAO().KiemTraTenDNTK(tendangnhap);
+
+        if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống họ tên sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (tendangnhap.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống mã số sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (matkhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống căn cước công dân sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (uptendangnhap.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống mã lớp sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (upmatkhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống số điện thoại sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (upnhaplaimatkhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống email sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (!email.contains("@gmail.com")) {
+            JOptionPane.showMessageDialog(null, "Định dạng gmail không đúng. Vui lòng nhập lại");
+        } else if (!upmatkhau.equals(upnhaplaimatkhau)) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu nhập lại không trùng với mật khẩu. Vui lòng nhập lại!");
+        } else {
+            int test1 = JOptionPane.showConfirmDialog(null, "Bạn chắc có muốn thay đổi mật khẩu hay không !", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (test1 == JOptionPane.YES_OPTION) {
+                XacNhanTaiKhoan();
+                DoiLaiMatKhau();
+
+            } else if (test1 == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Bạn đã hủy thay đổi thành công");
+            }
+        }
+
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    public static void main(String[] args) {
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+            javax.swing.JFrame frame = new javax.swing.JFrame("Cài đặt mật khẩu");
+            frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(new CaiDatMK());
+            frame.pack();
+            frame.setLocationRelativeTo(null); // Center the window
+            frame.setVisible(true);
+        }
+    });
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -253,4 +356,57 @@ public class CaiDatMK extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+    
+    void XacNhanTaiKhoan() {
+
+        Connection conn = KetNoiSQL.getConnection();
+        email = jTextField1.getText().trim();
+        String tendangnhap = jTextField2.getText().trim();
+        String matkhau = jPasswordField1.getText().trim();
+
+        String sql = "select * from taikhoan where tenDangNhap='" + tendangnhap + "' and matKhau='" + matkhau + "' and email ='" + email + "'";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                test = true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Thông tin tài khoản không đúng!");
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CaiDatMK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+
+    }
+    
+    void DoiLaiMatKhau() {
+        if (test == true) {
+            Connection conn = KetNoiSQL.getConnection();
+            int row = 0;
+            String sql1 = "update taikhoan set tenDangNhap=?, matKhau=? where email=?";
+            try {
+                PreparedStatement ps1 = conn.prepareStatement(sql1);
+
+                String password = jPasswordField3.getText().trim();
+                ps1.setString(1, jTextField3.getText().trim());
+                ps1.setString(2, password);
+                ps1.setString(3, email);
+
+                row = ps1.executeUpdate();
+                if (row > 0) {
+                    JOptionPane.showMessageDialog(null, "Cập nhật Tài khoản thành công");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nhap ma chua dung");
+                }
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+
 }

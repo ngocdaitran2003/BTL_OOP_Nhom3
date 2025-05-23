@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.ThongTinTaiKhoan;
 
 public class TaiKhoanDAO {
     public int SoLuongQuanLy(){
@@ -90,6 +91,26 @@ public class TaiKhoanDAO {
         } catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    public boolean KiemTraTenDNTK(String tendangnhap) {
+        ThongTinTaiKhoan tk = new ThongTinTaiKhoan();
+        Connection conn = KetNoiSQL.getConnection();
+        String sql = "select * from taikhoan where tenDangNhap ='" + tendangnhap + "'";
+        try {
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
     }
 
 }

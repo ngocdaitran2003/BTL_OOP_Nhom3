@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import Connector.KetNoiSQL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.ThongTinSinhVien;
 
 public class SinhVienDAO {
     public SinhVienDAO(){
@@ -108,6 +109,41 @@ public class SinhVienDAO {
         return false;
     }
     
+    public String layGioiTinhSVtuMaSV(String masv) {
+        String k = "";
+        Connection con = KetNoiSQL.getConnection();
+        String sql = "select * from SinhVien where maSV='" + masv + "'";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                k = rs.getString("gioiTinh");
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SinhVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return k;
+    }
+    
+    public String laytenSVtuMaSV(String masv) {
+        String k = "";
+        String sql = "select * from SinhVien where maSV='" + masv + "'";
+        Connection con = KetNoiSQL.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                k = rs.getString("tenSV");
+            }
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SinhVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return k;
+    }
+    
     public boolean UpdateKiemTraMaSoSV(String masv, String test) {
         String sql = "select * from SinhVien where maSV ='" + masv + "'";
         return  KiemTraCapNhat(sql, masv, test);    
@@ -126,6 +162,24 @@ public class SinhVienDAO {
     public boolean UpdateKiemTraSDTSV(String sodienthoai, String test){
         String sql = "select * from SinhVien where soDienThoai = '" + sodienthoai + "'";
         return KiemTraCapNhat(sql, sodienthoai, test);
+    }
+    
+     public String layMaSinhVienTuEmail(String email) {
+        String k = "";
+        String sql = "select maSV from SinhVien where email= '" + email + "'";
+        Connection con = KetNoiSQL.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                k = rs.getString("maSV");
+            }
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SinhVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return k;
     }
     
     // Lấy thông tin của sinh viên
@@ -191,6 +245,24 @@ public class SinhVienDAO {
         }
         return trangthai;
     }
+     
+     public String layGTSinhVienTuEmail(String email) {
+        String k = "";
+        String sql = "select gioiTinh from SinhVien where email= '" + email + "'";
+        Connection con = KetNoiSQL.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                k = rs.getString("gioiTinh");
+            }
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SinhVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return k;
+    }
     
     public String LayLoaiPhong(String masv){
         String sql = "select loaiPhong from SinhVien sv join DangKyPhong dkp on sv.maSV=dkp.maSV where sv.maSV='" + masv + "'";
@@ -209,6 +281,45 @@ public class SinhVienDAO {
         } catch (SQLException ex) {
             Logger.getLogger(SinhVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public boolean KiemTraMaSoSV(String masv) {
+        ThongTinSinhVien sv = new ThongTinSinhVien();
+        Connection conn = KetNoiSQL.getConnection();
+        String sql = "select * from SinhVien where maSV ='" + masv + "'";
+        try {
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            preparedStatement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
+    }
+    
+    public boolean KiemTraTenDN(String tendangnhap) {
+        Connection conn = KetNoiSQL.getConnection();
+        String sql = "select * from TaiKhoan where tenDangNhap ='" + tendangnhap + "'";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            preparedStatement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
     
     public void updateDKthanhcong(String masv) {

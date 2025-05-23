@@ -25,6 +25,84 @@ import model.ThongTinHopDong;
 import model.ThongTinSinhVien;
 
 public class HopDongKTXDAO {
+    public List<ThongTinHopDong> getallHopDong() {
+        List<ThongTinHopDong> listhd = new ArrayList<>();
+        // Date date=new Date();
+        Connection con = KetNoiSQL.getConnection();
+        String sql = "select * from HopDongKTX";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            // ps.setDate(1, new java.sql.Date (date.getTime()));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ThongTinHopDong tthd = new ThongTinHopDong();
+                tthd.setMasv(rs.getString("maSV"));
+                tthd.setMaphong(rs.getString("maPhong"));
+                tthd.setNgayHDBD(rs.getDate("ngayHDBD"));
+                tthd.setNgayHDKT(rs.getDate("ngayHDKT"));
+                listhd.add(tthd);
+
+            }
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+
+        }
+        return listhd;
+    }
+
+    public List<ThongTinHopDong> getallHopDong1() {
+        List<ThongTinHopDong> listhd = new ArrayList<>();
+        Date date = new Date();
+        Connection con = KetNoiSQL.getConnection();
+        String sql = "select * from HopDongKTX where ngayHDKT>?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDate(1, new java.sql.Date(date.getTime()));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ThongTinHopDong tthd = new ThongTinHopDong();
+                tthd.setMasv(rs.getString("maSV"));
+                tthd.setMaphong(rs.getString("maPhong"));
+                tthd.setNgayHDBD(rs.getDate("ngayHDBD"));
+                tthd.setNgayHDKT(rs.getDate("ngayHDKT"));
+                listhd.add(tthd);
+
+            }
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+
+        }
+        return listhd;
+    }
+    
+    public List<ThongTinHopDong> getallHopDong2() {
+        List<ThongTinHopDong> listhd = new ArrayList<>();
+        Date date = new Date();
+        Connection con = KetNoiSQL.getConnection();
+        String sql = "select * from HopDongKTX where ngayHDKT<?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDate(1, new java.sql.Date(date.getTime()));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ThongTinHopDong tthd = new ThongTinHopDong();
+                tthd.setMasv(rs.getString("maSV"));
+                tthd.setMaphong(rs.getString("maPhong"));
+                tthd.setNgayHDBD(rs.getDate("ngayHDBD"));
+                tthd.setNgayHDKT(rs.getDate("ngayHDKT"));
+                listhd.add(tthd);
+
+            }
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+
+        }
+        return listhd;
+    }
+    
     public String laymaPhongtumaSV(String masv) {
         String k = "";
         String sql = "select * from HopDongKTX where maSV='" + masv + "'";
@@ -79,6 +157,47 @@ public class HopDongKTXDAO {
             Logger.getLogger(SinhVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return formatter1.format(ngay);
+    }
+    
+    public List<ThongTinHopDong> getallHopDongmasv(String where, String text, int k) {
+        List<ThongTinHopDong> listhd = new ArrayList<>();
+        Date date = new Date();
+        Connection con = KetNoiSQL.getConnection();
+        String sql = "";
+        if (k == 0) {
+            sql = "select * from HopDongKTX where maSV like ?";
+        } else if (k == 1) {
+            sql = "select * from HopDongKTX where ngayHDKT>? and maSV like ?";
+        } else if (k == 2) {
+            sql = "select * from HopDongKTX where ngayHDKT<? and maSV like ?";
+        }
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            if (k == 1 || k == 2) {
+                ps.setDate(1, new java.sql.Date(date.getTime()));
+                ps.setString(2, "%" + text + "%");
+            } else {
+                ps.setString(1, "%" + text + "%");
+            }
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                ThongTinHopDong tthd = new ThongTinHopDong();
+                tthd.setMasv(rs.getString("maSV"));
+                tthd.setMaphong(rs.getString("maPhong"));
+                tthd.setNgayHDBD(rs.getDate("ngayHDBD"));
+                tthd.setNgayHDKT(rs.getDate("ngayHDKT"));
+                listhd.add(tthd);
+
+            }
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+
+        }
+        return listhd;
     }
     
     public void updateHopDongKTX(String masv, String maPhong, Date ngayHDKT,Date ngayHDBD) {
