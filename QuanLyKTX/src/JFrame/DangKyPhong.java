@@ -4,17 +4,32 @@
  */
 package JFrame;
 
+import DAO.PhongDAO;
+import DAO.SinhVienDAO;
+import java.awt.Color;
+import java.util.List;
+import javax.swing.JOptionPane;
+import model.ThongTinPhong;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+
 /**
  *
  * @author MPhuc
  */
 public class DangKyPhong extends javax.swing.JPanel {
-
+    private List<ThongTinPhong> listphong;
+    private String email;
+    private String gioitinh, loaiphong;
+    private int keyradiothang = 3;
     /**
      * Creates new form DangKyPhong
      */
     public DangKyPhong() {
         initComponents();
+       
+        jDialog1.setLocationRelativeTo(null);
     }
 
     /**
@@ -272,6 +287,17 @@ public class DangKyPhong extends javax.swing.JPanel {
         jPanel19.setBackground(new java.awt.Color(153, 153, 153));
         jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 153, 255)));
         jPanel19.setPreferredSize(new java.awt.Dimension(140, 140));
+        jPanel19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel19MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel19MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel19MouseExited(evt);
+            }
+        });
         jPanel19.setLayout(new java.awt.CardLayout());
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
@@ -361,6 +387,17 @@ public class DangKyPhong extends javax.swing.JPanel {
         jPanel21.setBackground(new java.awt.Color(153, 153, 153));
         jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 153, 255)));
         jPanel21.setPreferredSize(new java.awt.Dimension(140, 140));
+        jPanel21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel21MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel21MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel21MouseExited(evt);
+            }
+        });
         jPanel21.setLayout(new java.awt.CardLayout());
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
@@ -450,6 +487,17 @@ public class DangKyPhong extends javax.swing.JPanel {
         jPanel23.setBackground(new java.awt.Color(153, 153, 153));
         jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 153, 255)));
         jPanel23.setPreferredSize(new java.awt.Dimension(140, 140));
+        jPanel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel23MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel23MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel23MouseExited(evt);
+            }
+        });
         jPanel23.setLayout(new java.awt.CardLayout());
 
         jPanel24.setBackground(new java.awt.Color(255, 255, 255));
@@ -539,6 +587,17 @@ public class DangKyPhong extends javax.swing.JPanel {
         jPanel25.setBackground(new java.awt.Color(153, 153, 153));
         jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 153, 255)));
         jPanel25.setPreferredSize(new java.awt.Dimension(140, 140));
+        jPanel25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel25MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel25MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel25MouseExited(evt);
+            }
+        });
         jPanel25.setLayout(new java.awt.CardLayout());
 
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
@@ -628,6 +687,17 @@ public class DangKyPhong extends javax.swing.JPanel {
         jPanel27.setBackground(new java.awt.Color(153, 153, 153));
         jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 153, 255)));
         jPanel27.setPreferredSize(new java.awt.Dimension(140, 140));
+        jPanel27.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel27MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel27MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel27MouseExited(evt);
+            }
+        });
         jPanel27.setLayout(new java.awt.CardLayout());
 
         jPanel28.setBackground(new java.awt.Color(255, 255, 255));
@@ -717,6 +787,17 @@ public class DangKyPhong extends javax.swing.JPanel {
         jPanel29.setBackground(new java.awt.Color(153, 153, 153));
         jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 153, 255)));
         jPanel29.setPreferredSize(new java.awt.Dimension(140, 140));
+        jPanel29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel29MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel29MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel29MouseExited(evt);
+            }
+        });
         jPanel29.setLayout(new java.awt.CardLayout());
 
         jPanel30.setBackground(new java.awt.Color(255, 255, 255));
@@ -813,22 +894,52 @@ public class DangKyPhong extends javax.swing.JPanel {
 
         buttonGroup2.add(phong2);
         phong2.setText("Chọn phòng");
+        phong2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phong2ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(phong3);
         phong3.setText("Chọn phòng");
+        phong3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phong3ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(phong4);
         phong4.setText("Chọn phòng");
+        phong4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phong4ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(phong5);
         phong5.setText("Chọn phòng");
+        phong5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phong5ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(phong6);
         phong6.setText("Chọn phòng");
+        phong6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phong6ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 0, 0));
         jButton1.setText("Xác nhận ĐK Phòng");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -931,12 +1042,266 @@ public class DangKyPhong extends javax.swing.JPanel {
 
     private void phong1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phong1ActionPerformed
         // TODO add your handling code here:
+        if (phong1.isSelected()) {
+            jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+            jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        }
     }//GEN-LAST:event_phong1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        gioitinh = new SinhVienDAO().layGTSinhVienTuEmail(email);
+        if (phong1.isSelected()) {
+            loaiphong = "Loại 1";
+        } else if (phong2.isSelected()) {
+            loaiphong = "Loại 2";
+        } else if (phong3.isSelected()) {
+            loaiphong = "Loại 3";
+        } else if (phong4.isSelected()) {
+            loaiphong = "Loại 4";
+        } else if (phong5.isSelected()) {
+            loaiphong = "Loại 5";
+        } else if (phong6.isSelected()) {
+            loaiphong = "Loại 6";
+        }
+        SinhVienDAO svd = new SinhVienDAO();
+        String masv = new SinhVienDAO().layMaSinhVienTuEmail(email);
+        int fl = new PhongDAO().CheckPhong(loaiphong, gioitinh);
+        if (fl == 0) {
+            JOptionPane.showMessageDialog(null, "Hiện tại không còn phòng trống loại này vui lòng chọn loại phòng khác");
+        } else {
+            getjdialog();
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void phong2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phong2ActionPerformed
+        // TODO add your handling code here:
+        if (phong2.isSelected()) {
+            jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+            jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        }
+    }//GEN-LAST:event_phong2ActionPerformed
+
+    private void phong3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phong3ActionPerformed
+        // TODO add your handling code here:
+        if (phong3.isSelected()) {
+            jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+            jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        }
+    }//GEN-LAST:event_phong3ActionPerformed
+
+    private void phong4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phong4ActionPerformed
+        // TODO add your handling code here:
+        if (phong4.isSelected()) {
+            jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+            jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        }
+    }//GEN-LAST:event_phong4ActionPerformed
+
+    private void phong6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phong6ActionPerformed
+        // TODO add your handling code here:
+        if (phong5.isSelected()) {
+            jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+            jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        }
+    }//GEN-LAST:event_phong6ActionPerformed
+
+    private void phong5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phong5ActionPerformed
+        // TODO add your handling code here:
+        if (phong6.isSelected()) {
+            jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+            jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+            jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        }
+    }//GEN-LAST:event_phong5ActionPerformed
+
+    private void jPanel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel19MouseClicked
+        // TODO add your handling code here:
+        jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+        jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        phong1.setSelected(true);
+    }//GEN-LAST:event_jPanel19MouseClicked
+
+    private void jPanel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel21MouseClicked
+        // TODO add your handling code here:
+        jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+        jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        phong2.setSelected(true);
+    }//GEN-LAST:event_jPanel21MouseClicked
+
+    private void jPanel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel23MouseClicked
+        // TODO add your handling code here:
+        jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+        jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        phong3.setSelected(true);
+    }//GEN-LAST:event_jPanel23MouseClicked
+
+    private void jPanel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel25MouseClicked
+        // TODO add your handling code here:
+        jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+        jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        phong4.setSelected(true);
+    }//GEN-LAST:event_jPanel25MouseClicked
+
+    private void jPanel27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel27MouseClicked
+        // TODO add your handling code here:
+        jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+        jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        phong5.setSelected(true);
+    }//GEN-LAST:event_jPanel27MouseClicked
+
+    private void jPanel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel29MouseClicked
+        // TODO add your handling code here:
+        jPanel21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel29.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(237, 50, 55)));
+        jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        phong6.setSelected(true);
+    }//GEN-LAST:event_jPanel29MouseClicked
+
+    private void jPanel19MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel19MouseEntered
+        // TODO add your handling code here:
+        jLabel45.setVisible(true);
+        jPanel20.setVisible(false);
+    }//GEN-LAST:event_jPanel19MouseEntered
+
+    private void jPanel19MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel19MouseExited
+        // TODO add your handling code here:
+        jLabel45.setVisible(false);
+        jPanel20.setVisible(true);
+    }//GEN-LAST:event_jPanel19MouseExited
+
+    private void jPanel21MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel21MouseEntered
+        // TODO add your handling code here:
+        jLabel51.setVisible(true);
+        jPanel22.setVisible(false);
+    }//GEN-LAST:event_jPanel21MouseEntered
+
+    private void jPanel21MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel21MouseExited
+        // TODO add your handling code here:
+        jLabel51.setVisible(false);
+        jPanel22.setVisible(true);
+    }//GEN-LAST:event_jPanel21MouseExited
+
+    private void jPanel23MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel23MouseEntered
+        // TODO add your handling code here:
+        jLabel57.setVisible(true);
+        jPanel24.setVisible(false);
+    }//GEN-LAST:event_jPanel23MouseEntered
+
+    private void jPanel23MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel23MouseExited
+        // TODO add your handling code here:
+        jLabel57.setVisible(false);
+        jPanel24.setVisible(true);
+    }//GEN-LAST:event_jPanel23MouseExited
+
+    private void jPanel25MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel25MouseEntered
+        // TODO add your handling code here:
+        jLabel63.setVisible(true);
+        jPanel26.setVisible(false);
+    }//GEN-LAST:event_jPanel25MouseEntered
+
+    private void jPanel25MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel25MouseExited
+        // TODO add your handling code here:
+        jLabel63.setVisible(false);
+        jPanel26.setVisible(true);
+    }//GEN-LAST:event_jPanel25MouseExited
+
+    private void jPanel27MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel27MouseEntered
+        // TODO add your handling code here:
+        jLabel69.setVisible(true);
+        jPanel28.setVisible(false);
+    }//GEN-LAST:event_jPanel27MouseEntered
+
+    private void jPanel27MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel27MouseExited
+        // TODO add your handling code here:
+        jLabel69.setVisible(false);
+        jPanel28.setVisible(true);
+    }//GEN-LAST:event_jPanel27MouseExited
+
+    private void jPanel29MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel29MouseEntered
+        // TODO add your handling code here:
+        jLabel75.setVisible(true);
+        jPanel30.setVisible(false);
+    }//GEN-LAST:event_jPanel29MouseEntered
+
+    private void jPanel29MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel29MouseExited
+        // TODO add your handling code here:
+        jLabel75.setVisible(false);
+        jPanel30.setVisible(true);
+    }//GEN-LAST:event_jPanel29MouseExited
+    
+    
+    
+    public void getjdialog() {
+        jDialog1.setModal(true);
+        jDialog1.setVisible(true);
+        jDialog1.getContentPane().setBackground(Color.WHITE);
+        Border border = BorderFactory.createLineBorder(Color.BLACK);
+        jDialog1.getRootPane().setBorder(border);
+    }
+    
+    public static void main(String[] args) {
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+            javax.swing.JFrame frame = new javax.swing.JFrame("Cài đặt mật khẩu");
+            frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(new DangKyPhong());
+            frame.pack();
+            frame.setLocationRelativeTo(null); // Center the window
+            frame.setVisible(true);
+        }
+    });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

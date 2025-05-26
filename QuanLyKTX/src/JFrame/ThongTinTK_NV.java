@@ -4,6 +4,10 @@
  */
 package JFrame;
 
+import DAO.NhanVienDAO;
+import java.text.SimpleDateFormat;
+import model.ThongTinNhanVien;
+
 /**
  *
  * @author MPhuc
@@ -193,6 +197,18 @@ public class ThongTinTK_NV extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 
+    public static void main(String[] args) {
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+            javax.swing.JFrame frame = new javax.swing.JFrame("Cài đặt mật khẩu");
+            frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(new ThongTinTK_NV());
+            frame.pack();
+            frame.setLocationRelativeTo(null); // Center the window
+            frame.setVisible(true);
+        }
+    });
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -213,4 +229,17 @@ public class ThongTinTK_NV extends javax.swing.JPanel {
     private javax.swing.JTextField showphone;
     private javax.swing.JTextField showposition;
     // End of variables declaration//GEN-END:variables
+    void showViewTaiKhoan(String email) {
+        ThongTinNhanVien nv = new NhanVienDAO().getAllThongTinNVTheoemail(email);
+        System.out.println(nv.getChucVu());
+        showname.setText(nv.getTenNV());
+        showgioitinh.setText(nv.getGioiTinh());
+        showposition.setText(nv.getChucVu());
+        showphone.setText(nv.getSoDienThoai());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        showbirth.setText(dateFormat.format(nv.getNgaySinh()));
+        showcccd.setText(nv.getCCCD());
+        showemail.setText(nv.getEmail());
+        showaddress.setText(nv.getQueQuan());
+    }
 }

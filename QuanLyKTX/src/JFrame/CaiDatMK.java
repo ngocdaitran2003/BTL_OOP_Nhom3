@@ -4,12 +4,24 @@
  */
 package JFrame;
 
+import Connector.KetNoiSQL;
+import DAO.TaiKhoanDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MPhuc
  */
 public class CaiDatMK extends javax.swing.JPanel {
-
+    private boolean test = false;
+    private String email;
     /**
      * Creates new form CaiDatMK
      */
@@ -35,7 +47,7 @@ public class CaiDatMK extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel10 = new javax.swing.JLabel();
+        show_hide_eye = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -44,8 +56,8 @@ public class CaiDatMK extends javax.swing.JPanel {
         jPasswordField2 = new javax.swing.JPasswordField();
         jPasswordField3 = new javax.swing.JPasswordField();
         jTextField3 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        show_hide_eye_3 = new javax.swing.JLabel();
+        show_hide_eye_2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -69,9 +81,19 @@ public class CaiDatMK extends javax.swing.JPanel {
 
         jTextField2.setText("jTextField2");
 
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png"))); // NOI18N
+        show_hide_eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png"))); // NOI18N
+        show_hide_eye.setText("jLabel13");
+        show_hide_eye.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_hide_eyeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,11 +112,11 @@ public class CaiDatMK extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                             .addComponent(jTextField2)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)))
+                            .addComponent(jPasswordField1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(show_hide_eye, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,7 +136,7 @@ public class CaiDatMK extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(show_hide_eye))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -129,15 +151,21 @@ public class CaiDatMK extends javax.swing.JPanel {
 
         jLabel9.setText("Nhập lại mật khẩu:");
 
-        jPasswordField2.setText("jPasswordField2");
-
-        jPasswordField3.setText("jPasswordField3");
-
         jTextField3.setText("jTextField3");
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png"))); // NOI18N
+        show_hide_eye_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png"))); // NOI18N
+        show_hide_eye_3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_hide_eye_3MouseClicked(evt);
+            }
+        });
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png"))); // NOI18N
+        show_hide_eye_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png"))); // NOI18N
+        show_hide_eye_2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_hide_eye_2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,13 +184,13 @@ public class CaiDatMK extends javax.swing.JPanel {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3)
-                            .addComponent(jPasswordField3, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .addComponent(jPasswordField3)
                             .addComponent(jPasswordField2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(show_hide_eye_3)
+                            .addComponent(show_hide_eye_2, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -181,28 +209,34 @@ public class CaiDatMK extends javax.swing.JPanel {
                             .addComponent(jLabel8)
                             .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)))
-                    .addComponent(jLabel12))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(show_hide_eye_3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9)
+                                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(show_hide_eye_2))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 0, 0));
         jButton1.setText("Đặt lại tài khoản ");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,30 +245,119 @@ public class CaiDatMK extends javax.swing.JPanel {
                         .addGap(355, 355, 355))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(80, 80, 80))))
+                        .addGap(77, 77, 77))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGap(39, 39, 39))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void show_hide_eyeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_hide_eyeMouseClicked
+        // TODO add your handling code here:
+        Icon icon = show_hide_eye.getIcon();
+        if(icon.toString().contains("eye.png")){
+            show_hide_eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png")));
+            jPasswordField1.setEchoChar('*');
+        }else{
+            show_hide_eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png")));
+            jPasswordField1.setEchoChar((char)0);
+        }
+    }//GEN-LAST:event_show_hide_eyeMouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        String email = jTextField1.getText().trim();
+        String tendangnhap = jTextField2.getText().trim();
+        String matkhau = jPasswordField1.getText().trim();
+        String uptendangnhap = jTextField3.getText().trim();
+        String upmatkhau = jPasswordField3.getText().trim();
+        String upnhaplaimatkhau = jPasswordField2.getText().trim();
+
+        boolean kiemtratendn = new TaiKhoanDAO().KiemTraTenDNTK(tendangnhap);
+
+        if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống họ tên sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (tendangnhap.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống mã số sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (matkhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống căn cước công dân sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (uptendangnhap.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống mã lớp sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (upmatkhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống số điện thoại sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (upnhaplaimatkhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống email sinh viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (!email.contains("@gmail.com")) {
+            JOptionPane.showMessageDialog(null, "Định dạng gmail không đúng. Vui lòng nhập lại");
+        } else if (!upmatkhau.equals(upnhaplaimatkhau)) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu nhập lại không trùng với mật khẩu. Vui lòng nhập lại!");
+        } else {
+            int test1 = JOptionPane.showConfirmDialog(null, "Bạn chắc có muốn thay đổi mật khẩu hay không !", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (test1 == JOptionPane.YES_OPTION) {
+                XacNhanTaiKhoan();
+                DoiLaiMatKhau();
+
+            } else if (test1 == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Bạn đã hủy thay đổi thành công");
+            }
+        }
+
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void show_hide_eye_2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_hide_eye_2MouseClicked
+        // TODO add your handling code here:
+        Icon icon = show_hide_eye_2.getIcon();
+        if(icon.toString().contains("eye.png")){
+            show_hide_eye_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png")));
+            jPasswordField3.setEchoChar('*');
+        }else{
+            show_hide_eye_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png")));
+            jPasswordField3.setEchoChar((char)0);
+        }
+    }//GEN-LAST:event_show_hide_eye_2MouseClicked
+
+    private void show_hide_eye_3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_hide_eye_3MouseClicked
+        // TODO add your handling code here:
+        Icon icon = show_hide_eye_3.getIcon();
+        if(icon.toString().contains("eye.png")){
+            show_hide_eye_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png")));
+            jPasswordField2.setEchoChar('*');
+        }else{
+            show_hide_eye_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png")));
+            jPasswordField2.setEchoChar((char)0);
+        }
+    }//GEN-LAST:event_show_hide_eye_3MouseClicked
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    public static void main(String[] args) {
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+            javax.swing.JFrame frame = new javax.swing.JFrame("Cài đặt mật khẩu");
+            frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(new CaiDatMK());
+            frame.pack();
+            frame.setLocationRelativeTo(null); // Center the window
+            frame.setVisible(true);
+        }
+    });
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -251,5 +374,58 @@ public class CaiDatMK extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel show_hide_eye;
+    private javax.swing.JLabel show_hide_eye_2;
+    private javax.swing.JLabel show_hide_eye_3;
     // End of variables declaration//GEN-END:variables
+    
+    void XacNhanTaiKhoan() {
+
+        Connection conn = KetNoiSQL.getConnection();
+        email = jTextField1.getText().trim();
+        String tendangnhap = jTextField2.getText().trim();
+        String matkhau = jPasswordField1.getText().trim();
+
+        String sql = "select * from taikhoan where tenDangNhap='" + tendangnhap + "' and matKhau='" + matkhau + "' and email ='" + email + "'";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                test = true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Thông tin tài khoản không đúng!");
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CaiDatMK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void DoiLaiMatKhau() {
+        if (test == true) {
+            Connection conn = KetNoiSQL.getConnection();
+            int row = 0;
+            String sql1 = "update taikhoan set tenDangNhap=?, matKhau=? where email=?";
+            try {
+                PreparedStatement ps1 = conn.prepareStatement(sql1);
+
+                String password = jPasswordField3.getText().trim();
+                ps1.setString(1, jTextField3.getText().trim());
+                ps1.setString(2, password);
+                ps1.setString(3, email);
+
+                row = ps1.executeUpdate();
+                if (row > 0) {
+                    JOptionPane.showMessageDialog(null, "Cập nhật Tài khoản thành công");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nhap ma chua dung");
+                }
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+
 }

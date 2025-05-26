@@ -4,12 +4,27 @@
  */
 package JFrame;
 
+import Connector.KetNoiSQL;
+
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import DAO.TaiKhoanDAO;
+import DAO.NhanVienDAO;
+import model.ThongTinNhanVien;
+import JFrame.Main_NV;
+import JFrame.Main_SV;
+import JFrame.Main_admin;
+import JFrame.DangKyTaiKhoan;
+import Service.EmailCheckAccou;
+import javax.swing.Icon;
 /**
  *
  * @author MPhuc
  */
 public class Login1 extends javax.swing.JFrame {
-
+    String email;
     /**
      * Creates new form Login
      */
@@ -38,6 +53,7 @@ public class Login1 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        show_hide_eye = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -98,9 +114,26 @@ public class Login1 extends javax.swing.JFrame {
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Click here to create a new account!");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Forgot your password ?");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+
+        show_hide_eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png"))); // NOI18N
+        show_hide_eye.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_hide_eyeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -132,14 +165,18 @@ public class Login1 extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel17)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(show_hide_eye, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(7, 7, 7))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(109, 109, 109)
                         .addComponent(jLabel5)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,14 +189,16 @@ public class Login1 extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(show_hide_eye))
                 .addGap(30, 30, 30)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -211,9 +250,96 @@ public class Login1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your han dling code here:
+        String un = jTextField1.getText().trim();
+        String ps = jPasswordField1.getText().trim();
+
+        if (un.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập!");
+        } else if (ps.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu!");
+        } else {
+            try {
+                Connection conn = KetNoiSQL.getConnection();
+
+                Statement stm = conn.createStatement();
+
+                String sql = "select * from TaiKhoan where tenDangNhap='" + un + "' and matKhau='" + ps + "'";
+                ResultSet rs = stm.executeQuery(sql);
+
+                if (rs.next()) {
+                    if (rs.getString("phanQuyen").equals("Quản lý")) {
+                        this.email = new TaiKhoanDAO().LayEmail(un);
+                        ThongTinNhanVien nv = new NhanVienDAO().getAllThongTinNVTheoEmail(email);
+                        if (nv.getTrangThai().equals("Đã nghỉ việc")) {
+                            JOptionPane.showMessageDialog(null, "Bạn đã nghĩ việc ! Không thể đăng nhập đc!");
+                        } else {
+                            dispose();
+                            Main_admin main = new Main_admin();
+                            main.setVisible(true);
+                            this.email = new TaiKhoanDAO().LayEmail(un);
+                            main.setnameuser(email);
+                        }
+                    } else if (rs.getString("phanQuyen").equals("Sinh Viên")) {
+                        dispose();
+                        Main_SV main = new Main_SV();
+                        main.setVisible(true);
+                        this.email = new TaiKhoanDAO().LayEmail(un);
+                        main.setEmail(email);
+
+                        //   main.setnameuser(un);
+                    } else if (rs.getString("phanQuyen").equals("Nhân viên")) {
+                        this.email = new TaiKhoanDAO().LayEmail(un);
+                        ThongTinNhanVien nv = new NhanVienDAO().getAllThongTinNVTheoEmail(email);
+                        if (nv.getTrangThai().equals("Đã nghỉ việc")) {
+                            JOptionPane.showMessageDialog(null, "Bạn đã nghĩ việc ! Không thể đăng nhập đc!");
+                        } else {
+                            dispose();
+                            Main_NV main = new Main_NV();
+                            main.setVisible(true);
+                            main.setnameuser(email);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không đúng!");
+                    jTextField1.setText("");
+                    jPasswordField1.setText("");
+                }
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        DangKyTaiKhoan register = new DangKyTaiKhoan();
+        register.show();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        EmailCheckAccou emailtest = new EmailCheckAccou();
+        emailtest.show();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void show_hide_eyeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_hide_eyeMouseClicked
+        // TODO add your handling code here:
+        Icon icon = show_hide_eye.getIcon();
+        if(icon.toString().contains("eye.png")){
+            show_hide_eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png")));
+            jPasswordField1.setEchoChar('*');
+        }else{
+            show_hide_eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png")));
+            jPasswordField1.setEchoChar((char)0);
+        }
+        
+    }//GEN-LAST:event_show_hide_eyeMouseClicked
+
+  
     /**
      * @param args the command line arguments
      */
@@ -267,5 +393,6 @@ public class Login1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel show_hide_eye;
     // End of variables declaration//GEN-END:variables
 }
