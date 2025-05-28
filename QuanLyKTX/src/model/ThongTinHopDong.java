@@ -12,7 +12,6 @@ public class ThongTinHopDong {
     private Date ngayLapHopDong;
     private Date ngayHDBD;
     private Date ngayHDKT;
-
     public String getMaphong() {
         return maphong;
     }

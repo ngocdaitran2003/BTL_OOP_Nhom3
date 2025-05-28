@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="CapNhatTTHD">
       <Properties>
@@ -820,7 +820,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="317" max="32767" attributes="0"/>
+                  <EmptySpace pref="323" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="297" max="-2" attributes="0"/>
               </Group>
@@ -845,7 +845,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;QU&#x1ea2;N L&#xdd; H&#xd3;A &#x110;&#x1a0;N D&#x1eca;CH V&#x1ee4;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;QU&#x1ea2;N L&#xdd; H&#xd3;A &#x110;&#x1a0;N PH&#xd2;NG"/>
           </Properties>
         </Component>
       </SubComponents>

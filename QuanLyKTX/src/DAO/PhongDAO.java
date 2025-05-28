@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.ThongTinPhong;
 
 /**
  *
@@ -24,6 +25,59 @@ import java.util.logging.Logger;
 public class PhongDAO {
     public PhongDAO(){
         
+    }
+    
+    public List<ThongTinPhong> getAllThongTinPhong() {
+        List<ThongTinPhong> listPhong = new ArrayList<ThongTinPhong>();
+        Connection conn = KetNoiSQL.getConnection();
+        String sql = "select * from Phong";
+        try {
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                ThongTinPhong phong = new ThongTinPhong();
+                phong.setMaPhong(rs.getString("maPhong"));
+                phong.setTenPhong(rs.getString("tenPhong"));
+                phong.setSoLuongSVPhong(rs.getInt("soLuongSVPhong"));
+                phong.setLoaiPhong(rs.getString("loaiPhong"));
+                phong.setTienPhong(rs.getDouble("tienPhong"));
+                phong.setGioiTinh(rs.getString("gioiTinh"));
+                listPhong.add(phong);
+            }
+            preparedStatement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listPhong;
+    }
+
+    public List<ThongTinPhong> getAllThongTinPhongSearch(String where, String text) {
+        List<ThongTinPhong> listPhong = new ArrayList<ThongTinPhong>();
+        Connection conn = KetNoiSQL.getConnection();
+        String sql = "select * from Phong where " + where + " like N'%" + text + "%'";
+        try {
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                ThongTinPhong phong = new ThongTinPhong();
+                phong.setMaPhong(rs.getString("maPhong"));
+                phong.setTenPhong(rs.getString("tenPhong"));
+                phong.setSoLuongSVPhong(rs.getInt("soLuongSVPhong"));
+                phong.setLoaiPhong(rs.getString("loaiPhong"));
+                phong.setTienPhong(rs.getDouble("tienPhong"));
+                phong.setGioiTinh(rs.getString("gioiTinh"));
+                listPhong.add(phong);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listPhong;
     }
     
      public int SoLuongSV(String maPhong) {
@@ -290,6 +344,126 @@ public class PhongDAO {
             Logger.getLogger(PhongDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return slsvtt;
+    }
+    
+    public int slsvINPhong(String gioitinh) {
+        int slsv = 0;
+        Connection con = KetNoiSQL.getConnection();
+
+        String sql2 = "select loaiPhong ,sum(soLuongSVPhong) as tongSVtt from Phong where gioiTinh='" + gioitinh + "' group by loaiPhong";
+        try {
+
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+
+            ResultSet rs2 = ps2.executeQuery();
+
+            while (rs2.next()) {
+                slsv = slsv + rs2.getInt("tongSVtt");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SinhVienDangKyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return slsv;
+
+    }
+    
+    public List<ThongTinPhong> getAllThongTinPhongGioiTinh(String gioitinh) {
+        List<ThongTinPhong> listPhong = new ArrayList<ThongTinPhong>();
+        int slsvdango = slsvINPhong(gioitinh);
+        Connection conn = KetNoiSQL.getConnection();
+        String sql = "select * from Phong where gioiTinh=? ";
+        try {
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setString(1, gioitinh);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                if (slsvdango >0) {
+                    ThongTinPhong phong = new ThongTinPhong();
+                    phong.setTenPhong(rs.getString("tenPhong"));
+                    phong.setMaPhong(rs.getString("maPhong"));
+                    phong.setSoLuongSVPhong(rs.getInt("soLuongSVPhong"));
+                    phong.setGioiTinh(rs.getString("gioiTinh"));
+                    phong.setTienPhong(rs.getDouble("tienPhong"));
+                    phong.setLoaiPhong(rs.getString("loaiPhong"));
+                    //    phong.setSoLuongSVTT(rs.getInt("sinhVienTonTai"));
+                    listPhong.add(phong);
+                }
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listPhong;
+    }
+    
+    public int demSVinDK(String gioitinh) {
+        int sl = 0;
+        Connection con = KetNoiSQL.getConnection();
+        String sql = "select count(*) as slsv from DangKyPhong dkp join SinhVien sv on dkp.maSV=sv.maSV where gioiTinh='" + gioitinh + "'";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                sl = rs.getInt("slsv");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SinhVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sl;
+    }
+    
+    public int slsvtontaitrongPhong(String gioitinh) {
+        List<String> listmp = listmaphongTheoGioiTinh(gioitinh);
+        int tongsv = 0;
+        for (String i : listmp) {
+            tongsv = tongsv + soluongSVtttheomaPhong(i);
+        }
+        return tongsv;
+
+    }
+    
+    public List<String> listmaphongTheoGioiTinh(String gioitinh) {
+        List<String> listmaphong = new ArrayList<>();
+        Connection con = KetNoiSQL.getConnection();
+        String sql2 = "select maPhong from Phong where gioiTinh='" + gioitinh + "'";
+
+        try {
+
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+
+            ResultSet rs2 = ps2.executeQuery();
+
+            while (rs2.next()) {
+
+                listmaphong.add(rs2.getString("maPhong"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SinhVienDangKyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listmaphong;
+
+    }
+    
+    public int CheckPhong(String gioitinh) {
+        int t = 1;
+        int slsvDK, slsv, slsvtontai;
+        slsvDK = demSVinDK(gioitinh);
+        slsv = slsvINPhong(gioitinh);
+        slsvtontai = slsvtontaitrongPhong(gioitinh);
+        if (slsvtontai + slsvDK >= slsv) {
+            t = 0;
+        }
+
+        return t;
     }
     
     public List<String> listmaphongTheoLoaiPhongAGT(String loaiphong, String gioitinh) {
