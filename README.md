@@ -16,3 +16,4 @@ Công cụ sử dụng:
 Giao diện và xử lý chức năng: java swing, java core, jdbc(java-mysql)
 Cơ sở dữ liệu: Xampp kết nối đến MySQL
 
+File cơ sở dữ liệu: QuanLyKTX/quanlyktxsinhvien.sql 
