@@ -1,5 +1,9 @@
 package model;
 
+/**
+ *
+ * @author Nam
+ */
 public class ChuyenPhong {
     private String MaSV;
     private String MaPhongHT;

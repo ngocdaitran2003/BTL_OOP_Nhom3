@@ -20,12 +20,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ThongTinGiaHan;
 import model.ThongTinSinhVien;
-//import textfield.SearchOptinEvent;
-//import textfield.SearchOption;
+
 
 /**
  *
- * @author MPhuc
+ * @author MPhuc, Đại
  */
 public class QuanLyGiaHanPhong extends javax.swing.JPanel {
 

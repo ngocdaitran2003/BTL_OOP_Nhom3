@@ -12,7 +12,7 @@ import model.ThongTinSinhVien;
 
 /**
  *
- * @author PhanTien
+ * @author Nguyễn Văn Vũ, Đại
  */
 public class GiaHanChuyenPhong extends javax.swing.JPanel {
 

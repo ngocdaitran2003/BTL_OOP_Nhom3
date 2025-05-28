@@ -2,6 +2,10 @@ package model;
 
 import java.util.Date;
 
+/**
+ *
+ * @author Nam
+ */
 
 public class ThongTinHoaDonSV {
     private Date ngayThang;

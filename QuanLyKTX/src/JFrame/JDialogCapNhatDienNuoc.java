@@ -18,7 +18,7 @@ import model.ThongTinDichVu;
 
 /**
  *
- * @author NgocDai
+ * @author Nguyễn Văn Vũ
  */
 public class JDialogCapNhatDienNuoc extends javax.swing.JDialog {
 

@@ -421,13 +421,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="JFrameQuanLyKyTucXa.KetQua" name="jPanelKetQua">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card11"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="JFrame.ThongBao_SV" name="jPanelThongBaoSV">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
@@ -570,6 +563,13 @@
           </SubComponents>
         </Container>
         <Component class="JFrame.KhoanPhiSV" name="jPanelKhoanPhiSV">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="card11"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="JFrame.KetQua" name="jPanelKetQua">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="card11"/>

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author MPhuc
+ * @author MPhuc, Nam
  */
 public class Main_NV extends javax.swing.JFrame {
     String email;
@@ -60,8 +60,8 @@ public class Main_NV extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         txtnameuser = new javax.swing.JLabel();
         Information_NV = new javax.swing.JPanel();
-        jPanelCaiDatMK = new JFrame.CaiDatMK();
         jPanelTrangChu = new JFrame.Trangchu();
+        jPanelCaiDatMK = new JFrame.CaiDatMK();
         jPanelThongTinTK_NV = new JFrame.ThongTinTK_NV();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,8 +185,8 @@ public class Main_NV extends javax.swing.JFrame {
         );
 
         Information_NV.setLayout(new java.awt.CardLayout());
-        Information_NV.add(jPanelCaiDatMK, "card4");
         Information_NV.add(jPanelTrangChu, "card4");
+        Information_NV.add(jPanelCaiDatMK, "card4");
         Information_NV.add(jPanelThongTinTK_NV, "card4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

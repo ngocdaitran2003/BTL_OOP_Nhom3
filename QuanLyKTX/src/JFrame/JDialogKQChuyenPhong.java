@@ -25,7 +25,7 @@ import model.ThongTinSinhVien;
 
 /**
  *
- * @author huuzinhh
+ * @author Nguyễn Văn Vũ
  */
 public class JDialogKQChuyenPhong extends javax.swing.JDialog {
         private List<ChuyenPhong> listphong;

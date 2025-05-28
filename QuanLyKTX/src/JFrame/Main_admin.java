@@ -20,7 +20,7 @@ import model.ThongTinSinhVien;
 
 /**
  *
- * @author MPhuc
+ * @author MPhuc, Nam
  */
 public class Main_admin extends javax.swing.JFrame {
     private String email;
@@ -78,7 +78,6 @@ public class Main_admin extends javax.swing.JFrame {
         Infomation = new javax.swing.JPanel();
         jPanelTrangChu = new JFrame.Trangchu();
         jPanelQuanLyPhong = new JFrame.QuanLyPhong1();
-        jPanelQuanLySV = new JFrame.QuanLySV();
         jPanelQuanLyNV = new JFrame.QuanLyNV();
         jPanelThongBaoAdmin = new JFrame.ThongBao_Admin();
         jPanelCaiDatMK = new JFrame.CaiDatMK();
@@ -92,6 +91,7 @@ public class Main_admin extends javax.swing.JFrame {
         jPanelQuanLyChuyenPhong = new JFrame.QuanLyChuyenPhong();
         jPanelQuanLyGiaHanPhong = new JFrame.QuanLyGiaHanPhong();
         jPanelHopDongKTX = new JFrame.HopDongKTX();
+        jPanelQuanLySV = new JFrame.QuanLySV();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -331,7 +331,6 @@ public class Main_admin extends javax.swing.JFrame {
         Infomation.setLayout(new java.awt.CardLayout());
         Infomation.add(jPanelTrangChu, "card11");
         Infomation.add(jPanelQuanLyPhong, "card5");
-        Infomation.add(jPanelQuanLySV, "card3");
         Infomation.add(jPanelQuanLyNV, "card11");
         Infomation.add(jPanelThongBaoAdmin, "card7");
         Infomation.add(jPanelCaiDatMK, "card11");
@@ -381,6 +380,7 @@ public class Main_admin extends javax.swing.JFrame {
 
         Infomation.add(jPanelChuyenPhong, "card10");
         Infomation.add(jPanelHopDongKTX, "card11");
+        Infomation.add(jPanelQuanLySV, "card11");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

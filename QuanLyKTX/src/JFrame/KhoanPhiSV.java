@@ -6,7 +6,7 @@ package JFrame;
 
 /**
  *
- * @author PhanTien
+ * @author Đại
  */
 import Connector.KetNoiSQL;
 import DAO.HoaDonPhongDAO;

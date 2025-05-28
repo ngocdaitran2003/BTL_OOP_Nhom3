@@ -21,7 +21,7 @@ import model.ThongTinPhong;
 
 /**
  *
- * @author MPhuc, NgocDai
+ * @author MPhuc, Đại
  */
 public class QuanLyDienNuoc extends javax.swing.JPanel {
 

@@ -6,7 +6,7 @@ package Service;
 
 /**
  *
- * @author MPhuc
+ * @author MPhuc, Nam
  */
 public class EmailCheckAccou extends javax.swing.JFrame {
 

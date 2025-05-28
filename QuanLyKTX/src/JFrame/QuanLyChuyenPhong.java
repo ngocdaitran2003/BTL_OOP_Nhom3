@@ -18,7 +18,7 @@ import model.ChuyenPhong;
 
 /**
  *
- * @author MPhuc, NgocDai
+ * @author MPhuc, Đại
  */
 public class QuanLyChuyenPhong extends javax.swing.JPanel {
     

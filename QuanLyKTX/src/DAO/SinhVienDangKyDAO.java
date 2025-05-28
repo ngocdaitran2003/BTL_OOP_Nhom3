@@ -4,6 +4,11 @@
  */
 package DAO;
 
+/**
+ *
+ * @author Đại
+ */
+
 import Connector.KetNoiSQL;
 import java.util.logging.Level;
 import java.util.logging.Logger;

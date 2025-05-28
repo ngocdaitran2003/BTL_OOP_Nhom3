@@ -6,7 +6,7 @@ package JFrame;
 
 /**
  *
- * @author MPhuc
+ * @author MPhuc, Nam
  */
 public class ThongTinTK_SV extends javax.swing.JPanel {
 

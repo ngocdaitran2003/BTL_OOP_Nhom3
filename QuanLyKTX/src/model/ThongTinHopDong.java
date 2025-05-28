@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  *
- * @author DELL
+ * @author Nam
  */
 public class ThongTinHopDong {
     private String maphong;

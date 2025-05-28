@@ -1,5 +1,9 @@
 package model;
 
+/**
+ *
+ * @author Nam
+ */
 public class ThongTinPhong {
     private String maPhong;
     private String tenPhong;

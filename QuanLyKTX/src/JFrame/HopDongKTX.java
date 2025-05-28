@@ -4,13 +4,18 @@
  */
 package JFrame;
 
+import DAO.HopDongKTXDAO;
+import DAO.PhongDAO;
 import DAO.SinhVienDAO;
 import java.awt.Color;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ThongTinHopDong;
+import model.ThongTinPhong;
 import model.ThongTinSinhVien;
 
 
@@ -57,7 +62,6 @@ public class HopDongKTX extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablehd = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel35 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
@@ -149,11 +153,13 @@ public class HopDongKTX extends javax.swing.JPanel {
             }
         });
 
-        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh.png"))); // NOI18N
-
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add.png"))); // NOI18N
+        jLabel46.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel46MouseClicked(evt);
+            }
+        });
 
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
@@ -165,9 +171,19 @@ public class HopDongKTX extends javax.swing.JPanel {
 
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/edit.png"))); // NOI18N
+        jLabel48.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel48MouseClicked(evt);
+            }
+        });
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trash.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout QuanLyHopDongLayout = new javax.swing.GroupLayout(QuanLyHopDong);
         QuanLyHopDong.setLayout(QuanLyHopDongLayout);
@@ -178,8 +194,6 @@ public class HopDongKTX extends javax.swing.JPanel {
                 .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(QuanLyHopDongLayout.createSequentialGroup()
-                        .addComponent(jLabel35)
-                        .addGap(18, 18, 18)
                         .addComponent(jLabel46)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel48)
@@ -207,10 +221,9 @@ public class HopDongKTX extends javax.swing.JPanel {
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel47))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(QuanLyHopDongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel46, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(QuanLyHopDongLayout.createSequentialGroup()
@@ -312,7 +325,7 @@ public class HopDongKTX extends javax.swing.JPanel {
         jTextField6.setForeground(new java.awt.Color(102, 102, 102));
 
         jComboBox3.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Na02", "Na03", "Na04", "Na05", "Na06", "Nu01", "Nu02", "Nu03" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -464,7 +477,7 @@ public class HopDongKTX extends javax.swing.JPanel {
         jTextField12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 102, 102)));
 
         jComboBox4.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Na02", "Na03", "Na04", "Na05", "Na06", "Nu01", "Nu02", "Nu03" }));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 0, 0));
@@ -606,6 +619,45 @@ public class HopDongKTX extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jLabel47MouseClicked
 
+    private void jLabel46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseClicked
+        // TODO add your handling code here:
+        UpdateSinhVien.setVisible(false);
+        QuanLyHopDong.setVisible(false);
+        AddHopDong.setVisible(true);
+        
+        AddComboBoxMasv();
+    }//GEN-LAST:event_jLabel46MouseClicked
+
+    private void jLabel48MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel48MouseClicked
+        // TODO add your handling code here:
+        if (count == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn hợp đồng cần update!");
+        } else {
+            UpdateSinhVien.setVisible(true);
+            QuanLyHopDong.setVisible(false);
+            AddHopDong.setVisible(false);
+            
+            upThongtinhopdong();
+
+        }
+    }//GEN-LAST:event_jLabel48MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        if (count == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn sinh viên để xóa!");
+        } else if (count < listhd.size()) {
+            int test = JOptionPane.showConfirmDialog(this, "Bạn chắc có muốn xóa sinh viên hay không !", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (test == JOptionPane.YES_OPTION) {
+                ThongTinHopDong hd = listhd.get(count);
+                new PhongDAO().updateNgayHDKT(hd.getMasv());
+            } else if (test == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Bạn đã hủy xóa sinh viên thành công");
+            }
+        }
+        showTable();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
 //    public static void main(String[] args) {
 //    javax.swing.SwingUtilities.invokeLater(new Runnable() {
 //        public void run() {
@@ -643,7 +695,6 @@ public class HopDongKTX extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -751,5 +802,49 @@ public class HopDongKTX extends javax.swing.JPanel {
             });
         }
         count = -1;
+    }
+    
+    void AddComboBoxMasv() {
+        PhongDAO pd = new PhongDAO();
+        jComboBox3.removeAllItems();
+        List<String> listmasv = new HopDongKTXDAO().LayMaSinhVienChuaCoHopDong();
+        for (String i : listmasv) {
+            jComboBox3.addItem(i);
+
+        }
+    }
+    
+    public void upThongtinhopdong() {
+    ThongTinHopDong hd = listhd.get(count);
+        String masv = hd.getMasv();
+        SinhVienDAO svd = new SinhVienDAO();
+        String gioitinh = svd.layGioiTinhSVtuMaSV(masv);
+        String tensv = svd.laytenSVtuMaSV(masv);
+        SimpleDateFormat spd = new SimpleDateFormat("dd-MM-yyyy");
+
+
+        jTextField4.setText(tensv);
+        jTextField10.setText(masv);
+        jTextField11.setText(spd.format((hd.getNgayHDBD())));
+        jTextField12.setText(spd.format(hd.getNgayHDKT()));
+        AddComboBoxnew(gioitinh);
+        jTextField4.setEditable(false);
+        jTextField10.setEditable(false);
+        jComboBox4.setSelectedItem(hd.getMaphong());
+    }
+    
+        void AddComboBoxnew(String gioitinh) {
+        PhongDAO pd = new PhongDAO();
+        //  System.out.println("checkPhong :"+pd.CheckPhong(gioitinh));
+        if (pd.CheckPhong(gioitinh) == 1) {
+            jComboBox4.removeAllItems();
+            List<ThongTinPhong> listphong = new PhongDAO().getAllThongTinPhongGioiTinh(gioitinh);
+            for (ThongTinPhong phong : listphong) {
+                jComboBox4.addItem(phong.getMaPhong());
+
+            }
+
+        }
+
     }
 }

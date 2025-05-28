@@ -25,7 +25,7 @@ import model.ThongTinGiaHan;
 
 /**
  *
- * @author huuzinhh
+ * @author Nguyễn Văn Vũ
  */
 public class JDialogKQGiahan extends javax.swing.JDialog {
     String msv;

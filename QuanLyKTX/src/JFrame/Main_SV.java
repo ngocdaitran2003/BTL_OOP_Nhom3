@@ -20,7 +20,7 @@ import model.ThongTinSinhVien;
 
 /**
  *
- * @author MPhuc
+ * @author MPhuc, Nam
  */
 public class Main_SV extends javax.swing.JFrame {
 
@@ -82,7 +82,6 @@ public class Main_SV extends javax.swing.JFrame {
         jPanelDKyPhong = new JFrame.DangKyPhong();
         jPanelThongTinTK_SV = new JFrame.ThongTinTK_SV();
         jPanelCaiDatMK = new JFrame.CaiDatMK();
-        jPanelKetQua = new JFrameQuanLyKyTucXa.KetQua();
         jPanelThongBaoSV = new JFrame.ThongBao_SV();
         jPanelGiaHanKQ = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -91,6 +90,7 @@ public class Main_SV extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanelKhoanPhiSV = new JFrame.KhoanPhiSV();
+        jPanelKetQua = new JFrame.KetQua();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -279,7 +279,6 @@ public class Main_SV extends javax.swing.JFrame {
         Information_SV.add(jPanelDKyPhong, "card3");
         Information_SV.add(jPanelThongTinTK_SV, "card7");
         Information_SV.add(jPanelCaiDatMK, "card6");
-        Information_SV.add(jPanelKetQua, "card11");
         Information_SV.add(jPanelThongBaoSV, "card10");
 
         jPanelGiaHanKQ.setBackground(new java.awt.Color(255, 255, 255));
@@ -354,6 +353,7 @@ public class Main_SV extends javax.swing.JFrame {
 
         Information_SV.add(jPanelKhoanPhiKQ, "card9");
         Information_SV.add(jPanelKhoanPhiSV, "card11");
+        Information_SV.add(jPanelKetQua, "card11");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -589,7 +589,7 @@ public class Main_SV extends javax.swing.JFrame {
     private JFrame.DangKyPhong jPanelDKyPhong;
     private JFrame.GiaHanChuyenPhong jPanelGiaHanChuyenPhong;
     private javax.swing.JPanel jPanelGiaHanKQ;
-    private JFrameQuanLyKyTucXa.KetQua jPanelKetQua;
+    private JFrame.KetQua jPanelKetQua;
     private javax.swing.JPanel jPanelKhoanPhiKQ;
     private JFrame.KhoanPhiSV jPanelKhoanPhiSV;
     private JFrame.ThongBao_SV jPanelThongBaoSV;

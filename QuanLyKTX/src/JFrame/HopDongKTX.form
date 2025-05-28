@@ -36,8 +36,6 @@
                   <EmptySpace pref="53" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
@@ -73,10 +71,9 @@
                               <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="342" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="348" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel35" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel46" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel48" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -229,14 +226,6 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel35">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/refresh.png"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel46">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
@@ -244,6 +233,9 @@
               <Image iconType="3" name="/image/add.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel46MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel47">
           <Properties>
@@ -263,6 +255,9 @@
               <Image iconType="3" name="/image/edit.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel48MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -271,6 +266,9 @@
               <Image iconType="3" name="/image/trash.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel7MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
         </Component>
@@ -567,11 +565,15 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="8">
+                    <StringItem index="0" value="Na02"/>
+                    <StringItem index="1" value="Na03"/>
+                    <StringItem index="2" value="Na04"/>
+                    <StringItem index="3" value="Na05"/>
+                    <StringItem index="4" value="Na06"/>
+                    <StringItem index="5" value="Nu01"/>
+                    <StringItem index="6" value="Nu02"/>
+                    <StringItem index="7" value="Nu03"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -891,11 +893,15 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="8">
+                    <StringItem index="0" value="Na02"/>
+                    <StringItem index="1" value="Na03"/>
+                    <StringItem index="2" value="Na04"/>
+                    <StringItem index="3" value="Na05"/>
+                    <StringItem index="4" value="Na06"/>
+                    <StringItem index="5" value="Nu01"/>
+                    <StringItem index="6" value="Nu02"/>
+                    <StringItem index="7" value="Nu03"/>
                   </StringArray>
                 </Property>
               </Properties>

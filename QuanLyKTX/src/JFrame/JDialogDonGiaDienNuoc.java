@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Ngoc Dai
+ * @author Đại
  */
 public class JDialogDonGiaDienNuoc extends javax.swing.JDialog {
 

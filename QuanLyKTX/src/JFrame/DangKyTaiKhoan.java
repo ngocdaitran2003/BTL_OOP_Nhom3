@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package JFrame;
+/**
+ *
+ * @author Nguyễn Văn Vũ
+ */
 
 import Connector.KetNoiSQL;
 import DAO.NhanVienDAO;

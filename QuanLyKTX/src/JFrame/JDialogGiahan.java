@@ -10,7 +10,6 @@ import DAO.HopDongKTXDAO;
 import java.sql.Connection;
 import model.ThongTinHopDong;
 import java.util.Date;
-//import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -25,7 +24,7 @@ import model.ThongTinGiaHan;
 
 /**
  *
- * @author huuzinhh
+ * @author Nguyễn Văn Vũ
  */
 public class JDialogGiahan extends javax.swing.JDialog {
     String msv;

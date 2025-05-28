@@ -276,14 +276,14 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Component class="JFrame.CaiDatMK" name="jPanelCaiDatMK">
+        <Component class="JFrame.Trangchu" name="jPanelTrangChu">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="card4"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="JFrame.Trangchu" name="jPanelTrangChu">
+        <Component class="JFrame.CaiDatMK" name="jPanelCaiDatMK">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="card4"/>

@@ -10,7 +10,7 @@ import model.ThongTinNhanVien;
 
 /**
  *
- * @author MPhuc
+ * @author MPhuc, Nam
  */
 public class ThongTinTK_NV extends javax.swing.JPanel {
 

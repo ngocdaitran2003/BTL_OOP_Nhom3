@@ -21,7 +21,7 @@ import Service.EmailCheckAccou;
 import javax.swing.Icon;
 /**
  *
- * @author MPhuc
+ * @author MPhuc, Nam
  */
 public class Login1 extends javax.swing.JFrame {
     String email;

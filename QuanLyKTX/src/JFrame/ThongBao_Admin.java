@@ -6,7 +6,7 @@ package JFrame;
 
 /**
  *
- * @author MPhuc
+ * @author MPhuc, Nam
  */
 public class ThongBao_Admin extends javax.swing.JPanel {
 

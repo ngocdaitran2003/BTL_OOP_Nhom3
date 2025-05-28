@@ -8,6 +8,10 @@ import java.time.LocalDateTime;
 import java.sql.Timestamp;
 
 
+/**
+ *
+ * @author Nam
+ */
 public class ThongTinThongBao {
     private String tieuDe;
     private String noiDung;

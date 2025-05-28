@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -25,18 +26,17 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ThongTinTaiKhoan;
 import model.ThongTinNhanVien;
-//import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-//import textfield.SearchOptinEvent;
-//import textfield.SearchOption;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author MPhuc, NgocDai
+ * @author MPhuc, Đại
  */
 public class QuanLyNV extends javax.swing.JPanel {
 
@@ -328,7 +328,7 @@ public class QuanLyNV extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(331, 331, 331)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -570,6 +570,11 @@ public class QuanLyNV extends javax.swing.JPanel {
         btnAddNV.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAddNV.setForeground(new java.awt.Color(204, 0, 0));
         btnAddNV.setText("Lưu Nhân viên");
+        btnAddNV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddNVMouseClicked(evt);
+            }
+        });
 
         show_hide_eye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye-crossed.png"))); // NOI18N
 
@@ -599,7 +604,7 @@ public class QuanLyNV extends javax.swing.JPanel {
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(show_hide_eye)
                                 .addComponent(show_hide_eye2)))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -665,7 +670,7 @@ public class QuanLyNV extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(362, Short.MAX_VALUE)
+                .addContainerGap(330, Short.MAX_VALUE)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(300, 300, 300))
         );
@@ -756,6 +761,11 @@ public class QuanLyNV extends javax.swing.JPanel {
         btnUpdateNV.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUpdateNV.setForeground(new java.awt.Color(204, 0, 0));
         btnUpdateNV.setText("Lưu thông tin");
+        btnUpdateNV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateNVMouseClicked(evt);
+            }
+        });
 
         txtUpTrangThai.setForeground(new java.awt.Color(102, 102, 102));
         txtUpTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang làm việc", "Đã nghỉ việc" }));
@@ -1123,12 +1133,12 @@ public class QuanLyNV extends javax.swing.JPanel {
         ViewNhanVien.setLayout(ViewNhanVienLayout);
         ViewNhanVienLayout.setHorizontalGroup(
             ViewNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 894, Short.MAX_VALUE)
+            .addGap(0, 870, Short.MAX_VALUE)
             .addGroup(ViewNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ViewNhanVienLayout.createSequentialGroup()
-                    .addGap(0, 14, Short.MAX_VALUE)
+                    .addGap(0, 2, Short.MAX_VALUE)
                     .addComponent(UpdateSinhVien2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 14, Short.MAX_VALUE)))
+                    .addGap(0, 2, Short.MAX_VALUE)))
         );
         ViewNhanVienLayout.setVerticalGroup(
             ViewNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1290,6 +1300,148 @@ public class QuanLyNV extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_deleteNVMouseClicked
 
+    private void btnAddNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddNVMouseClicked
+        // TODO add your handling code here:
+        String hotennv = txtTenNV.getText().trim();
+        String cccdnv = txtCCCDNV.getText().trim();
+        try {
+            Date ngaysinhnv = new SimpleDateFormat("dd/MM/yyyy").parse(txtNgaySinhNV.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sodienthoainv = txtSoDienThoaiNV.getText().trim();
+        String emailnv = txtEmailNV.getText().trim();
+        String tendangnhapnv = txtTenDangNhapNV.getText().trim();
+        String matkhau = txtMatKhauNV.getText().trim();
+        String nhaplaimatkhau = txtNhapLaiMatKhauNV.getText().trim();
+
+        // Ràng buộc điều kiện chi tiết
+        String ycsdt = "^[0]{1}[0-9]{9}";
+        String yccccd = "^([0-9]{9})*([0-9]{12})*$";
+        String yctandangnhap = "^[a-zA-Z0-9]+$";
+
+        // Kiểm tra tài khoản, thông tin đã tồn tại hay chưa
+        boolean kiemtracccdsv = new SinhVienDAO().KiemTraCCCDSV(cccdnv);
+        boolean kiemtraemailsv = new SinhVienDAO().KiemTraEmailSV(emailnv);
+        boolean kiemtrasdtsv = new SinhVienDAO().KiemTraSDTSV(sodienthoainv);
+        boolean kiemtratendn = new TaiKhoanDAO().KiemTraTenDNTK(tendangnhapnv);
+        boolean kiemtracccdnhanvien = new NhanVienDAO().KiemTraCCCDNV(cccdnv);
+        boolean kiemtraemailnhanvien = new NhanVienDAO().KiemTraEmailNV(emailnv);
+        boolean kiemtrasdtnhanvien = new NhanVienDAO().KiemTraSDTNV(sodienthoainv);
+
+        if (hotennv.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống họ tên nhân viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (cccdnv.isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "Không để trống căn cước công dân nhân viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (sodienthoainv.isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "Không để trống số điện thoại nhân viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (emailnv.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống email nhân viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (tendangnhapnv.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống tên đăng nhập. Vui lòng điền thông tin đầy đủ!");
+        } else if (matkhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống mật khẩu. Vui lòng điền thông tin đầy đủ!");
+        } else if (nhaplaimatkhau.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống nhập lại mật khẩu. Vui lòng điền thông tin đầy đủ!");
+        } else if (!cccdnv.matches(yccccd)) {
+            JOptionPane.showMessageDialog(this, "Định dạng căn cước công dân không đúng. Vui lòng nhập lại!");
+        } else if (!sodienthoainv.matches(ycsdt)) {
+            JOptionPane.showMessageDialog(null, "Định dạng số điện thoại không dúng. Ví dụ : 0827364857");
+        } else if (!emailnv.contains("@gmail.com")) {
+            JOptionPane.showMessageDialog(null, "Định dạng gmail không đúng. Vui lòng nhập lại");
+        } else if (!matkhau.equals(nhaplaimatkhau)) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu nhập lại không trùng với mật khẩu. Vui lòng nhập lại!");
+        } else if (kiemtracccdsv || kiemtracccdnhanvien) {
+            JOptionPane.showMessageDialog(null, "Căn cước nhân viên đã được đăng ký!");
+        } else if (kiemtraemailsv || kiemtraemailnhanvien) {
+            JOptionPane.showMessageDialog(null, "Email nhân viên đã được đăng ký!");
+        } else if (kiemtrasdtsv || kiemtrasdtnhanvien) {
+            JOptionPane.showMessageDialog(null, "Số điện thoại nhân viên đã được đăng ký!");
+        } else if (kiemtratendn) {
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập nhân viên đã tồn tại!");
+        } else if (!tendangnhapnv.matches(yctandangnhap)) {
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập nhân viên chỉ có số và chữ trong alphabet");
+        } else {
+            int test = JOptionPane.showConfirmDialog(null, "Bạn chắc có muốn thêm nhân viên hay không !",
+                    "Thông báo đăng ký", JOptionPane.YES_NO_OPTION);
+            if (test == JOptionPane.YES_OPTION) {
+                AddTaiKhoan();
+                AddNhanVien();
+                // resetForm();
+            } else if (test == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Bạn đã hủy thêm nhân viên thành công");
+            }
+        }
+    }//GEN-LAST:event_btnAddNVMouseClicked
+
+    private void btnUpdateNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateNVMouseClicked
+        // TODO add your handling code here:
+        String hotennv = txtUpTenNV.getText().trim();
+        String cccdnv = txtUpCCCDNV.getText().trim();
+        try {
+            Date ngaysinhnv = new SimpleDateFormat("dd/MM/yyyy").parse(txtUpNgaySinhNV.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyNV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sodienthoainv = txtUpSoDienThoaiNV.getText().trim();
+        String emailnv = txtUpEmail.getText().trim();
+
+        // Ràng buộc điều kiện chi tiết
+        String ycsdt = "^[0]{1}[0-9]{9}";
+        String yccccd = "^([0-9]{9})*([0-9]{12})*$";
+        String ycmalop = "^[A-Z]{1}[0-9]{2}[A-Z]{4}[0-9]{2}";
+        String yctandangnhap = "^[a-zA-Z0-9]+$";
+        // Kiểm tra tài khoản, thông tin đã tồn tại hay chưa
+        boolean kiemtracccd = new NhanVienDAO().UpKiemTraCCCDNV(cccdnv, cccd);
+        boolean kiemtracccdsv = new SinhVienDAO().UpdateKiemTraCCCDSV(cccdnv, cccd);
+        boolean kiemtraemailsv = new SinhVienDAO().UpdateKiemTraEmailSV(emailnv, email);
+        boolean kiemtraemail = new NhanVienDAO().UpKiemTraEmailNV(emailnv, email);
+        // boolean kiemtrasdt = new QuanLyNhanVienDAO().UpKiemTraSDTNV(sodienthoainv,
+        // sdt);
+        // boolean kiemtrasdtsv = new SinhVienDAO().UpKiemTraSDTSV(sodienthoainv, sdt);
+
+        //
+        if (hotennv.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống họ tên nhân viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (cccdnv.isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "Không để trống căn cước công dân nhân viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (sodienthoainv.isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "Không để trống số điện thoại nhân viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (emailnv.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Không để trống email nhân viên. Vui lòng điền thông tin đầy đủ!");
+        } else if (!cccdnv.matches(yccccd)) {
+            JOptionPane.showMessageDialog(this, "Định dạng căn cước công dân không đúng. Vui lòng nhập lại!");
+        } else if (!sodienthoainv.matches(ycsdt)) {
+            JOptionPane.showMessageDialog(this, "Định dạng số điện thoại không dúng. Ví dụ : 0827364857");
+        } else if (!emailnv.contains("@gmail.com")) {
+            JOptionPane.showMessageDialog(null, "Định dạng gmail không đúng. Vui lòng nhập lại");
+        } else if (kiemtracccd || kiemtracccdsv) {
+            JOptionPane.showMessageDialog(null, "Căn cước nhân viên đã được đăng ký!");
+        } else if (kiemtraemail || kiemtraemailsv) {
+            JOptionPane.showMessageDialog(null, "Email nhân viên đã được đăng ký!");
+        } else {
+            int test = JOptionPane.showConfirmDialog(null, "Bạn chắc có muốn cập nhật thông tin nhân viên hay không !",
+                    "Thông báo đăng ký", JOptionPane.YES_NO_OPTION);
+            if (test == JOptionPane.YES_OPTION) {
+                LayCCCDNhanVien(count);
+                new TaiKhoanDAO().CapNhatEmail(email, emailnv);
+                updateNV();
+                JOptionPane.showMessageDialog(null, "Cập nhật nhân viên thành công!");
+                showTable();
+                QuanLyThongTinNV.setVisible(true);
+                AddNhanVien.setVisible(false);
+                ViewNhanVien.setVisible(false);
+                UpdateNhanVien.setVisible(false);
+            } else if (test == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Bạn đã hủy cập nhật thành công");
+            }
+        }
+    }//GEN-LAST:event_btnUpdateNVMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddNhanVien;
@@ -1400,19 +1552,8 @@ public class QuanLyNV extends javax.swing.JPanel {
                 nv.getTenNV(), nv.getCCCD(), nv.getGioiTinh(), nv.getNgaySinh(), nv.getSoDienThoai(), nv.getChucVu(), nv.getTrangThai()
             });
         }
-        // Căn lề tất cả các cột về bên trái
-        //setLeftAlignmentForTableColumns(tableNV);
         count = -1;
     }
-//    private void setLeftAlignmentForTableColumns(JTable table) {
-//        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
-//        leftRenderer.setHorizontalAlignment(DefaultTableCellRenderer.LEFT);
-//
-//        TableColumnModel columnModel = table.getColumnModel();
-//        for (int columnIndex = 0; columnIndex < columnModel.getColumnCount(); columnIndex++) {
-//            columnModel.getColumn(columnIndex).setCellRenderer(leftRenderer);
-//        }
-//    }
      
      private void showTable(String where, String text) {
         listnhanvien = new NhanVienDAO().getAllThongTinNVSearch(where, text);
@@ -1528,5 +1669,102 @@ public class QuanLyNV extends javax.swing.JPanel {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Lỗi xóa không thành công !");
         }
+    }
+    
+    public void AddNhanVien() {
+        selectedChucVu = String.valueOf(txtChucVuNV.getSelectedItem());
+        Connection conn = KetNoiSQL.getConnection();
+        String sql = "insert into NhanVien (tenNV, CCCD, gioiTinh, ngaySinh, email, soDienThoai, queQuan , chucVu, trangThai)"
+                + "values(?,?,?,?,?,?,?,?,?)";
+        int row = 0;
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, txtTenNV.getText().trim());
+            ps.setString(2, txtCCCDNV.getText().trim());
+            if (rdNamNV.isSelected()) {
+                ps.setString(3, "Nam");
+            } else {
+                ps.setString(3, "Nữ");
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(txtNgaySinhNV.getText());
+            ps.setString(4, date);
+            ps.setString(5, txtEmailNV.getText().trim());
+            ps.setString(6, txtSoDienThoaiNV.getText().trim());
+            ps.setString(7, selectedQueQuan);
+            ps.setString(8, selectedChucVu);
+            ps.setString(9, "Đang làm việc");
+            row = ps.executeUpdate();
+            if (row > 0) {
+                JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công");
+                QuanLyThongTinNV.setVisible(true);
+                AddNhanVien.setVisible(false);
+                ViewNhanVien.setVisible(false);
+                UpdateNhanVien.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Thêm nhân viên không thành công!");
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        showTable();
+    }
+
+    void AddTaiKhoan() {
+        Connection conn = KetNoiSQL.getConnection();
+        int row = 0;
+        String phanquyen = null;
+        int choice = txtChucVuNV.getSelectedIndex();
+        if (choice == 0) {
+            phanquyen = "Quản lý";
+        } else {
+            phanquyen = "Nhân viên";
+        }
+        String sql1 = "insert into TaiKhoan (tenDangNhap, matKhau, email, phanQuyen) values(?,?,?,?)";
+        try {
+            PreparedStatement ps1 = conn.prepareStatement(sql1);
+
+            String password = txtMatKhauNV.getText().trim();
+            ps1.setString(1, txtTenDangNhapNV.getText().trim());
+            ps1.setString(2, password);
+            ps1.setString(3, txtEmailNV.getText().trim());
+            ps1.setString(4, phanquyen);
+
+            row = ps1.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    private void updateNV() {
+        try {
+            Connection conn = KetNoiSQL.getConnection();
+            String sql = "UPDATE NhanVien set tenNV=?, CCCD=?, ngaySinh=?, gioiTinh=?, soDienThoai=?, queQuan=?, email=?, chucVu=?, trangThai=? where CCCD=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, txtUpTenNV.getText().trim());
+            ps.setString(2, txtUpCCCDNV.getText().trim());
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = txtUpNgaySinhNV.getText();
+            ps.setString(3, date);
+            if (rdUpNam.isSelected()) {
+                ps.setString(4, "Nam");
+            } else {
+                ps.setString(4, "Nữ");
+            }
+            ps.setString(5, txtUpSoDienThoaiNV.getText().trim());
+            ps.setString(6, selectedUpQueQuan);
+            ps.setString(7, txtUpEmail.getText().trim());
+            ps.setString(8, selectedUpChucVu);
+            ps.setString(9, selectedUpTrangThai);
+            ps.setString(10, cccd);
+            ps.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+        }
+        showTable();
     }
 }

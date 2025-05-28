@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  *
- * @author huuzinhh
+ * @author Nam
  */
 public class ThongTinGiaHan {
     private String maSV;
